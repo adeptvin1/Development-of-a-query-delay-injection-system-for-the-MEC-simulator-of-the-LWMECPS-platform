@@ -7,31 +7,31 @@ metadata:
   namespace: mec-app
 spec:
   rules:
-  - host: foo.bar.com
+  - host: backend.mecapp.site
     http:
       paths:
-      - path: /
+      - path: /app1
         pathType: Prefix
         backend:
           service:
             name: mec-test-app-1
             port:
               number: 3001
-      - path: /
+      - path: /app2
         pathType: Prefix
         backend:
           service:
             name: mec-test-app-2
             port:
               number: 3002
-      - path: /
+      - path: /app3
         pathType: Prefix
         backend:
           service:
             name: mec-test-app-3
             port:
               number: 3003
-      - path: /
+      - path: /app4
         pathType: Prefix
         backend:
           service:
