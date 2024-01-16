@@ -26,7 +26,7 @@ spec:
       - name:  mec-test-app-3
         image:  ifilyaninitmo/mec-test-app-backend:main
         ports:
-        - containerPort:  3002
+        - containerPort:  3000
           name:  mec-test-app-3
       restartPolicy: Always
 
@@ -44,4 +44,4 @@ spec:
   - name: mec-test-app-3
     protocol: TCP
     port: 3003
-    targetPort: 3002
+    targetPort: 3000
