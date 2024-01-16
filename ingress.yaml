@@ -1,0 +1,40 @@
+# https://kubernetes.io/docs/concepts/services-networking/ingress/#the-ingress-resource
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: mec-test-app
+  namespace: mec-app
+spec:
+  rules:
+  - host: foo.bar.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: mec-test-app-1
+            port:
+              number: 3001
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: mec-test-app-2
+            port:
+              number: 3002
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: mec-test-app-3
+            port:
+              number: 3003
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: mec-test-app-4
+            port:
+              number: 3004

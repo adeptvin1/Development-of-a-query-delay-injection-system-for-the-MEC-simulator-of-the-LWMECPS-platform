@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  mec-lat-1-cl
+  namespace: default
+  labels:
+    app:  mec-lat-1-cl
+spec:
+  selector:
+    matchLabels:
+      app: mec-lat-1-cl
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app:  mec-lat-1-cl
+    spec:
+      nodeSelector:
+        kubernetes.io/hostname: minikube
+      containers:
+      - name:  mec-lat-1-cl
+        image:  ifilyaninitmo/mec-test-app-web:main
+        ports:
+        - containerPort:  3002
+          name:  mec-lat-1-cl
+      restartPolicy: Always

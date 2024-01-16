@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  mec-test-app-4
+  namespace: mec-app
+  labels:
+    app:  mec-test-app-4
+spec:
+  selector:
+    matchLabels:
+      app: mec-test-app-4
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app:  mec-test-app-4
+    spec:
+      nodeSelector:
+        kubernetes.io/hostname: minikube-m04
+      containers:
+      - name:  mec-test-app-4
+        image:  ifilyaninitmo/mec-test-app-backend:main
+        ports:
+        - containerPort:  3002
+          name:  mec-test-app-4
+      restartPolicy: Always
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mec-test-app-4
+  namespace: mec-test-app
+spec:
+  selector:
+    app: mec-test-app-4
+  type: ClusterIP
+  ports:
+  - name: mec-test-app-4
+    protocol: TCP
+    port: 3004
+    targetPort: 3002
