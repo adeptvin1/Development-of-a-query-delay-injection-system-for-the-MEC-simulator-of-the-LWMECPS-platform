@@ -1,14 +1,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name:  mec-lat-1-cl
+  name:  mec-test-client
   namespace: default
   labels:
-    app:  mec-lat-1-cl
+    app:  mec-test-client
 spec:
   selector:
     matchLabels:
-      app: mec-lat-1-cl
+      app: mec-test-client
   replicas: 1
   strategy:
     rollingUpdate:
@@ -18,14 +18,30 @@ spec:
   template:
     metadata:
       labels:
-        app:  mec-lat-1-cl
+        app:  mec-test-client
     spec:
       nodeSelector:
         kubernetes.io/hostname: minikube
       containers:
-      - name:  mec-lat-1-cl
+      - name:  mec-test-client
         image:  ifilyaninitmo/mec-test-app-web:main
         ports:
         - containerPort:  3002
-          name:  mec-lat-1-cl
+          name:  mec-test-client
       restartPolicy: Always
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mec-test-client
+  namespace: default
+spec:
+  selector:
+    app: mec-test-client
+  type: ClusterIP
+  ports:
+  - name: mec-test-client
+    protocol: TCP
+    port: 3010
+    targetPort: 3002

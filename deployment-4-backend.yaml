@@ -35,7 +35,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: mec-test-app-4
-  namespace: mec-test-app
+  namespace: mec-app
 spec:
   selector:
     app: mec-test-app-4
