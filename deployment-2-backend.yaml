@@ -24,6 +24,7 @@ spec:
         kubernetes.io/hostname: minikube-m02
       containers:
       - name:  mec-test-app-2
+        imagePullPolicy: Always
         image:  ifilyaninitmo/mec-test-app-backend:main
         ports:
         - containerPort:  3000
