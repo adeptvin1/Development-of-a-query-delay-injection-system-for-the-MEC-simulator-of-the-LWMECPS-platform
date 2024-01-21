@@ -5,7 +5,7 @@ config.load_kube_config()
 
 api = client.CustomObjectsApi()
 
-pod_list = client.CoreV1Api().list_namespaced_pod('default')
+pod_list = client.CoreV1Api().list_namespaced_pod('mec-app')
 
 for pod in pod_list.items:
     pod_name = pod.metadata.name
